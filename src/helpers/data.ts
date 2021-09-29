@@ -7,5 +7,15 @@ const transformRequest = (data: any): any => {
   return data
 }
 
+const transformResponse = (data: any): any => {
+  if (typeof data === 'string') {
+    try {
+      data = JSON.parse(data)
+    } catch (e) {
+      // nothing
+    }
+  }
+  return data
+}
 
-export { transformRequest }
+export { transformRequest, transformResponse }
