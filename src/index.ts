@@ -25,7 +25,6 @@ function processConfig(config: AxiosRequestConfig): void {
   config.url = transformUrl(config)
   config.headers = transformHeaders(config)
   config.data = transformRequestData(config)
-
 }
 
 function axios(config: AxiosRequestConfig): AxiosPromise {
