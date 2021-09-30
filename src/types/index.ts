@@ -1,4 +1,4 @@
-export  type  Method = 'get' | 'GET'
+type  Method = 'get' | 'GET'
   | 'delete' | 'Delete'
   | 'head' | 'HEAD'
   | 'options' | 'OPTIONS'
@@ -7,7 +7,7 @@ export  type  Method = 'get' | 'GET'
   | 'patch' | 'PATCH'
 
 
-export interface AxiosRequestConfig {
+interface AxiosRequestConfig {
   url: string
   method?: Method
   params?: any
@@ -18,7 +18,7 @@ export interface AxiosRequestConfig {
 }
 
 
-export interface AxiosResponse {
+interface AxiosResponse {
   data: any
   status: number
   statusText: string
@@ -27,6 +27,24 @@ export interface AxiosResponse {
   request: any
 }
 
-export  interface  AxiosPromise extends  Promise<AxiosResponse> {
+interface AxiosPromise extends Promise<AxiosResponse> {
 
+}
+
+interface AxiosError extends Error {
+  config: AxiosRequestConfig
+  code?: string
+  request?: any
+  response?: AxiosResponse
+  isAxiosError: boolean
+}
+
+
+
+export {
+  Method,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosPromise,
+  AxiosError
 }
