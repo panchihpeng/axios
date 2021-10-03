@@ -24,8 +24,8 @@ interface AxiosRequestConfig {
   timeout?: number
 }
 
-interface AxiosResponse {
-  data: any
+interface AxiosResponse<T = any> {
+  data: T
   status: number
   statusText: string
   headers: any
@@ -33,7 +33,7 @@ interface AxiosResponse {
   request: any
 }
 
-interface AxiosPromise extends Promise<AxiosResponse> {}
+interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {}
 
 interface AxiosError extends Error {
   config: AxiosRequestConfig
@@ -44,25 +44,27 @@ interface AxiosError extends Error {
 }
 
 interface Axios {
-  request(config: AxiosRequestConfig): AxiosPromise
+  request<T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
-  get(url: string, config?: AxiosRequestConfig): AxiosPromise
+  get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 
-  delete(url: string, config?: AxiosRequestConfig): AxiosPromise
+  delete<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 
-  head(url: string, config?: AxiosRequestConfig): AxiosPromise
+  head<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 
-  options(url: string, config?: AxiosRequestConfig): AxiosPromise
+  options<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 
-  post(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise
+  post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
 
-  put(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise
+  put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
 
-  patch(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise
+  patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
 }
 
 interface AxiosInstance extends Axios {
-  (config: AxiosRequestConfig): AxiosPromise
+  <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
+
+  <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
 
 export { Method, AxiosRequestConfig, AxiosResponse, AxiosPromise, AxiosError, Axios, AxiosInstance }
