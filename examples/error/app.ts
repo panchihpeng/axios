@@ -9,6 +9,7 @@ axios({
 }).catch((e: AxiosError) => {
   console.log(e.message)
   console.log(e.code)
+
 })
 
 axios({
