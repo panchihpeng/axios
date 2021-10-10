@@ -1,6 +1,5 @@
 import { isPlainObject, deepMerge } from './util'
 import { Method } from '../types'
-import { head } from 'shelljs'
 
 const normalizeHeaderName = (headers: any, normalizedName: string): any => {
   if (!headers) return
@@ -11,9 +10,7 @@ const normalizeHeaderName = (headers: any, normalizedName: string): any => {
       delete headers[name]
     }
   })
-
 }
-
 
 const processHeaders = (headers: any, data: any): any => {
   normalizeHeaderName(headers, 'Content-Type')
@@ -27,7 +24,6 @@ const processHeaders = (headers: any, data: any): any => {
 }
 
 const parseHeaders = (headers: string): any => {
-
   const parsed = Object.create(null)
 
   if (!headers) return parsed
@@ -47,6 +43,7 @@ const parseHeaders = (headers: string): any => {
   })
   return parsed
 }
+
 const flattenHeaders = (headers: any, method: Method): any => {
   if (!headers) {
     return headers
@@ -57,9 +54,8 @@ const flattenHeaders = (headers: any, method: Method): any => {
   const methodsToDelete = ['delete', 'get', 'head', 'options', 'post', 'put', 'patch', 'common']
 
   methodsToDelete.forEach(method => delete headers[method])
+
+  return headers
 }
-export {
-  processHeaders,
-  parseHeaders,
-  flattenHeaders
-}
+
+export { processHeaders, parseHeaders, flattenHeaders }
