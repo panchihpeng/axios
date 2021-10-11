@@ -22,7 +22,12 @@ interface AxiosRequestConfig {
   headers?: any
   responseType?: XMLHttpRequestResponseType
   timeout?: number
+
   [propName: string]: any
+
+  transformRequest?: AxiosTransformer | AxiosTransformer[]
+
+  transformResponse?: AxiosTransformer | AxiosTransformer[]
 }
 
 interface AxiosResponse<T = any> {
@@ -34,7 +39,8 @@ interface AxiosResponse<T = any> {
   request: any
 }
 
-interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {}
+interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
+}
 
 interface AxiosError extends Error {
   config: AxiosRequestConfig
@@ -88,6 +94,10 @@ interface AxiosInterceptorManager<T> {
   eject(id: number): void
 }
 
+interface AxiosTransformer {
+  (data: any, headers?: any): any
+}
+
 export {
   Method,
   AxiosRequestConfig,
@@ -98,5 +108,6 @@ export {
   AxiosInstance,
   AxiosInterceptorManager,
   ResolvedFn,
-  RejectedFn
+  RejectedFn,
+  AxiosTransformer
 }
