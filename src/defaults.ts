@@ -1,6 +1,5 @@
 import { AxiosRequestConfig } from './types'
 import { processHeaders } from './helpers/headers'
-import { head } from 'shelljs'
 import { transformRequest, transformResponse } from './helpers/data'
 
 const defaults: AxiosRequestConfig = {

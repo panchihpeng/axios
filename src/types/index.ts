@@ -39,8 +39,7 @@ interface AxiosResponse<T = any> {
   request: any
 }
 
-interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
-}
+interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {}
 
 interface AxiosError extends Error {
   config: AxiosRequestConfig

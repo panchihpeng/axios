@@ -1,6 +1,6 @@
 import axios from '../../src/index'
 import qs from 'qs'
-
+import {AxiosTransformer} from '../../src/types/index'
 axios.defaults.headers.common['test2'] = 123
 
 axios({
