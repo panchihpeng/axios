@@ -1,3 +1,4 @@
+
 type Method =
   | 'get'
   | 'GET'
@@ -26,9 +27,10 @@ interface AxiosRequestConfig {
   [propName: string]: any
 
   transformRequest?: AxiosTransformer | AxiosTransformer[]
-
   transformResponse?: AxiosTransformer | AxiosTransformer[]
+  cancelToken?: CancelToken
 }
+
 
 interface AxiosResponse<T = any> {
   data: T
@@ -39,7 +41,8 @@ interface AxiosResponse<T = any> {
   request: any
 }
 
-interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {}
+interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
+}
 
 interface AxiosError extends Error {
   config: AxiosRequestConfig
@@ -81,6 +84,10 @@ interface AxiosInstance extends Axios {
 
 interface AxiosStatic extends AxiosInstance {
   create(config?: AxiosRequestConfig): AxiosInstance
+
+  CancelToken: CancelTokenStatic
+  Cancel: CancelStatic
+  isCancel: (value: any) => boolean
 }
 
 interface ResolvedFn<T = any> {
@@ -101,6 +108,39 @@ interface AxiosTransformer {
   (data: any, headers?: any): any
 }
 
+interface CancelToken {
+  promise: Promise<Cancel>
+  reason?: Cancel
+
+  throwIfRequested(): void
+}
+
+interface Canceler {
+  (message?: string): void
+}
+
+interface CancelExecutor {
+  (cancel: Canceler): void
+}
+
+interface CancelTokenSource {
+  token: CancelToken
+  cancel: Canceler
+}
+
+interface CancelTokenStatic {
+  new(executor: CancelExecutor): CancelToken
+
+  source(): CancelTokenSource
+}
+ interface Cancel {
+  message?: string
+}
+
+ interface CancelStatic {
+  new (message?: string): Cancel
+}
+
 export {
   Method,
   AxiosRequestConfig,
@@ -113,5 +153,12 @@ export {
   ResolvedFn,
   RejectedFn,
   AxiosTransformer,
-  AxiosStatic
+  AxiosStatic,
+  CancelToken,
+  Canceler,
+  CancelExecutor,
+  CancelTokenSource,
+  CancelTokenStatic,
+  Cancel,
+  CancelStatic
 }
