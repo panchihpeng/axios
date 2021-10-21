@@ -9,8 +9,10 @@ export default function transform(data: any, headers: any, fns?: AxiosTransforme
   if (!Array.isArray(fns)) {
     fns = [fns]
   }
+
   fns.forEach(fn => {
     data = fn(data, headers)
   })
+
   return data
 }

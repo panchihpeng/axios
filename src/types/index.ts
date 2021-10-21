@@ -79,6 +79,10 @@ interface AxiosInstance extends Axios {
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
 
+interface AxiosStatic extends AxiosInstance {
+  create(config?: AxiosRequestConfig): AxiosInstance
+}
+
 interface ResolvedFn<T = any> {
   (val: T): T | Promise<T>
 }
@@ -108,5 +112,6 @@ export {
   AxiosInterceptorManager,
   ResolvedFn,
   RejectedFn,
-  AxiosTransformer
+  AxiosTransformer,
+  AxiosStatic
 }
