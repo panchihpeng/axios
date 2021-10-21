@@ -1,4 +1,3 @@
-
 type Method =
   | 'get'
   | 'GET'
@@ -133,12 +132,13 @@ interface CancelTokenStatic {
 
   source(): CancelTokenSource
 }
- interface Cancel {
+
+interface Cancel {
   message?: string
 }
 
- interface CancelStatic {
-  new (message?: string): Cancel
+interface CancelStatic {
+  new(message?: string): Cancel
 }
 
 export {

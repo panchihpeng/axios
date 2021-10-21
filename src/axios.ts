@@ -7,7 +7,8 @@ import CancelToken from './cancel/CancelToken'
 import Cancel, { isCancel } from './cancel/Cancel'
 
 function createInstance(config: AxiosRequestConfig): AxiosStatic {
-  const context = new Axios(config)
+  const context = new Axios(config) // 此时，传入默认配置
+
   const instance = Axios.prototype.request.bind(context)
 
   extend(instance, context)
