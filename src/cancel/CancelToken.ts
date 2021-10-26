@@ -25,6 +25,7 @@ export default class CancelToken {
     })
   }
 
+  // it's so confused for me !
   static source(): CancelTokenSource {
     let cancel!: Canceler
     const token = new CancelToken(c => {
